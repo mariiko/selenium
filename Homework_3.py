@@ -20,7 +20,9 @@ while menu_number: # цикл для нажатия пунктов меню сл
     def are_elements_present(driver, *args): # функция для проверки наличия заголовка
         return len(driver.find_elements(*args)) > 0 # условие, что находится хотя бы один элемент
 
-    are_elements_present(driver, By.TAG_NAME, "h1") > 0 # проверка наличия заголовка
+    if are_elements_present(driver,By.TAG_NAME,"h1") == False:  # проверка наличия заголовка
+        print("No headers")
+        exit(-1)
 
     submenu_number = len(driver.find_elements_by_css_selector(".docs>li>a")) # список вложенных пунктов меню слева
 
@@ -28,6 +30,8 @@ while menu_number: # цикл для нажатия пунктов меню сл
         submenu_number -= 1
         submenu_items = driver.find_elements_by_css_selector(".docs>li>a")
         submenu_items[submenu_number].click()
-        are_elements_present(driver, By.TAG_NAME, "h1") > 0 # проверка наличия заголовка во вложенных пунктах
+        if are_elements_present(driver,By.TAG_NAME,"h1") == False:  # проверка наличия заголовка во вложенных пунктах
+            print("No headers")
+            exit(-2)
 
-
+driver.close()
