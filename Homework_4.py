@@ -9,13 +9,10 @@ ducks_number = (driver.find_elements_by_css_selector(".image-wrapper"))  # сп�
 
 for duck_number in ducks_number:  # цикл для каждой утки
 
-    stickers = duck_number.find_elements_by_css_selector("*.sticker") #поиск стикера в определенной утке
+    stickers = duck_number.find_elements_by_css_selector("[class *= sticker]") #поиск стикера в определенной утке
     print(stickers) #проверка для себя
 
-    def are_elements_present(): # функция для проверки наличия стикера
-        return len(stikers) == 1 # условие, что находится один элемент
-
-    if not are_elements_present:  # если условие не выполнится
+    if not len(stickers) == 1:  # если условие не выполнится
         print("Mistake") #выдать ошибку
         exit(-1) #завершить цикл
     else:
