@@ -12,7 +12,7 @@ wait = WebDriverWait(driver, 10)  # ожидание
 first_duck = driver.find_element_by_css_selector("#box-campaigns a") #ищем первый элемент блоке Campaigns
 first_duck_name = driver.find_element_by_css_selector("#box-campaigns .name").text
 first_duck.click()
-second_duck_name = one_duck_element_name = driver.find_element_by_css_selector("h1.title").text
+second_duck_name = driver.find_element_by_css_selector("h1.title").text
 if first_duck_name == second_duck_name:
     print("Имена уток совпадают")
 else:
