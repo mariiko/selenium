@@ -13,11 +13,11 @@ def random_string(item, len):
 
 def test_1():
     create_account = dict(
-        firstname=random_string("", 8),
-        lastname=random_string("", 8),
-        address1=random_string("", 10),
+        firstname="Ivan",
+        lastname="Ivanov",
+        address1="Street_1",
         postcode="12345",
-        city=random_string("", 10),
+        city="Saint-Petersburg",
         email=random_string("", 10) + "@gmail.com",
         phone="+71234567890",
         password="12345",
