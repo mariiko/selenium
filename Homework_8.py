@@ -27,8 +27,8 @@ def test_1():
     driver.find_element_by_name("date_valid_from").send_keys(datetime.date.today().strftime('%d-%m-%Y'))
     driver.find_element_by_name("date_valid_to").send_keys((datetime.date.today()+datetime.timedelta(days=30)).strftime('%d-%m-%Y'))
 
-    driver.find_element_by_css_selector("[href='#tab-information']").click()
     driver.implicitly_wait(10)
+    driver.find_element_by_css_selector("[href='#tab-information']").click()
     Select(driver.find_element_by_name("manufacturer_id")).select_by_value("1")
     driver.find_element_by_name("keywords").send_keys("key_words_product")
     driver.find_element_by_name("short_description[en]").send_keys("short_description_product")
@@ -36,8 +36,8 @@ def test_1():
     driver.find_element_by_name("head_title[en]").send_keys("head_title_product")
     driver.find_element_by_name("meta_description[en]").send_keys("meta_description_product")
 
-    driver.find_element_by_css_selector("[href='#tab-prices']").click()
     driver.implicitly_wait(10)
+    driver.find_element_by_css_selector("[href='#tab-prices']").click()
     driver.find_element_by_name("purchase_price").clear()
     driver.find_element_by_name("purchase_price").send_keys("100")
     Select(driver.find_element_by_name("purchase_price_currency_code")).select_by_value("USD")
