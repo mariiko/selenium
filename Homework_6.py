@@ -3,13 +3,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Chrome()
 #driver = webdriver.Firefox()
-#driver = webdriver.Edge("msedgedriver.exe")#обратилась напрямую к файлу, т.к. по-другому не работало
+#driver = webdriver.Edge("msedgedriver.exe")
 
-driver.get("http://localhost/litecart/en/")  # переход по ссылке
-wait = WebDriverWait(driver, 10)  # ожидание
+driver.get("http://localhost/litecart/en/")
+wait = WebDriverWait(driver, 10)
 
 
-first_duck = driver.find_element_by_css_selector("#box-campaigns a") #ищем первый элемент блоке Campaigns
+first_duck = driver.find_element_by_css_selector("#box-campaigns a")
 first_duck_name = driver.find_element_by_css_selector("#box-campaigns .name").text
 first_duck.click()
 second_duck_name = driver.find_element_by_css_selector("h1.title").text
@@ -33,10 +33,11 @@ driver.back()
 
 first_duck = driver.find_element_by_css_selector("#box-campaigns a")
 first_duck_regular_price_colour = driver.find_element_by_css_selector("#box-campaigns .regular-price").value_of_css_property("color")
-r1_1 = int(first_duck_regular_price_colour[5:8])
-g1_1 = int(first_duck_regular_price_colour[10:13])
-b1_1 = int(first_duck_regular_price_colour[15:18])
-assert(r1_1 == g1_1 == b1_1)
+first_duck_regular_1 = (first_duck_regular_price_colour.replace("(", " "))
+first_duck_regular_2 = first_duck_regular_1.replace(")", "")
+first_duck_regular_3 = first_duck_regular_2.replace(",", "")
+first_duck_regular_total = first_duck_regular_3.split()
+assert(first_duck_regular_total[1] == first_duck_regular_total[2] == first_duck_regular_total[3])
 print("Цвет текста обычной цены первой утки серый")
 
 first_duck_regular_price_crossed_out = driver.find_element_by_css_selector("#box-campaigns .regular-price").value_of_css_property("text-decoration-line")
@@ -45,10 +46,11 @@ print("Обычная цена первой утки зачеркнута")
 
 first_duck.click()
 second_duck_regular_price_colour = driver.find_element_by_css_selector(".price-wrapper .regular-price").value_of_css_property("color")
-r1_2 = int(second_duck_regular_price_colour[5:8])
-g1_2 = int(second_duck_regular_price_colour[10:13])
-b1_2 = int(second_duck_regular_price_colour[15:18])
-assert(r1_2 == g1_2 == b1_2)
+second_duck_regular_1 = (second_duck_regular_price_colour.replace("(", " "))
+second_duck_regular_2 = second_duck_regular_1.replace(")", "")
+second_duck_regular_3 = second_duck_regular_2.replace(",", "")
+second_duck_regular_total = second_duck_regular_3.split()
+assert(second_duck_regular_total[1] == second_duck_regular_total[2] == second_duck_regular_total[3])
 print("Цвет текста обычной цены второй утки серый")
 
 second_duck_regular_price_crossed_out = driver.find_element_by_css_selector(".price-wrapper .regular-price").value_of_css_property("text-decoration-line")
@@ -58,9 +60,11 @@ print("Обычная цена второй утки зачеркнута")
 driver.back()
 first_duck = driver.find_element_by_css_selector("#box-campaigns .campaign-price")
 first_duck_campaign_price_colour = driver.find_element_by_css_selector("#box-campaigns .campaign-price").value_of_css_property("color")
-g2_1 = int(first_duck_campaign_price_colour[10])
-b2_1 = int(first_duck_campaign_price_colour[13])
-assert(0 == g2_1 == b2_1)
+first_duck_campaign_1 = (first_duck_campaign_price_colour.replace("(", " "))
+first_duck_campaign_2 = first_duck_campaign_1.replace(")", "")
+first_duck_campaign_3 = first_duck_campaign_2.replace(",", "")
+first_duck_campaign_total = first_duck_campaign_3.split()
+assert("0" == first_duck_campaign_total[2] == first_duck_campaign_total[3])
 print("Цвет текста акционной цены первой утки красный")
 
 first_duck_campaign_price_weight = driver.find_element_by_css_selector("#box-campaigns .campaign-price").value_of_css_property("font-weight")
@@ -69,9 +73,11 @@ print("Жирность текста акционной цены первой у
 
 first_duck.click()
 second_duck_campaign_price_colour = driver.find_element_by_css_selector(".price-wrapper .campaign-price").value_of_css_property("color")
-g2_2 = int(second_duck_campaign_price_colour[10])
-b2_2 = int(second_duck_campaign_price_colour[13])
-assert(0 == g2_2 == b2_2)
+second_duck_campaign_1 = (second_duck_campaign_price_colour.replace("(", " "))
+second_duck_campaign_2 = second_duck_campaign_1.replace(")", "")
+second_duck_campaign_3 = second_duck_campaign_2.replace(",", "")
+second_duck_campaign_total = second_duck_campaign_3.split()
+assert("0" == second_duck_campaign_total[2] == second_duck_campaign_total[3])
 print("Цвет текста акционной цены второй утки красный")
 
 second_duck_campaign_price_weight = driver.find_element_by_css_selector(".price-wrapper .campaign-price").value_of_css_property("font-weight")
